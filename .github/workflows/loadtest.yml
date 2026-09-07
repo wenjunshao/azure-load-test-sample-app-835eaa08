@@ -31,6 +31,9 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       # Run the load test
+      - name: Install Azure Load Testing action dependencies
+        run: npm ci --omit=dev --prefix "${{ runner.workspace }}/../_actions/azure/load-testing/ce6fe8a43177293d8f288123dc628038d2849bbb"
+
       - name: Azure Load Testing
         # Pinning the action to a specific commit SHA to avoid breaking changes in the future.
         uses: azure/load-testing@ce6fe8a43177293d8f288123dc628038d2849bbb # Node.js 24 support
